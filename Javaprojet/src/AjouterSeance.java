@@ -48,12 +48,10 @@ public class AjouterSeance extends Frame implements ActionListener{
 	JTextField wIDcours =new JTextField(20);
         JLabel IDtype=new JLabel("ID du type :");
 	JTextField wIDtype =new JTextField(20);
-	Icon vlid=new ImageIcon("C:/Users/MOSLEM/Desktop/EmploiDetemps/bin/image/tick.png");
-	Icon annl=new ImageIcon("C:/Users/MOSLEM/Desktop/EmploiDetemps/bin/image/publish_r.png");
-	JButton valider=new JButton("Valider",vlid);
-	JButton annuler=new JButton("Annuler",annl);
-	JLabel Titre=new JLabel("Ajouter seance");
-	String []tab={"0","1","2","3","4","5","6","7","8","9"};
+	JButton valider=new JButton("Valider");
+	JButton annuler=new JButton("Annuler");
+	JLabel Titre=new JLabel("modifier seance");
+	
 	public AjouterSeance()
 	{
 		super("Ajouter une nouvelle seance :");
@@ -106,6 +104,8 @@ public class AjouterSeance extends Frame implements ActionListener{
 		wIDcours.addActionListener(this);
                 wIDtype.addActionListener(this);
 	}
+        
+    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
