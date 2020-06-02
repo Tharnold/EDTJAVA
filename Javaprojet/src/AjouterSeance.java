@@ -116,12 +116,12 @@ public class AjouterSeance extends Frame implements ActionListener{
 				
 				ID=(new Integer(wID.getText()));
 				semaine=(new Integer(wSemaine.getText()));
-                                date=(new Integer(wID.getText()));
-				heureD=(new Integer(wID.getText()));
-				heureF=(new Integer(wID.getText()));
-				Etat=(new Integer(wID.getText()));
-				IDcours=(new Integer(wID.getText()));
-                                IDtype=(new Integer(wID.getText()));
+                                date=(new Integer(wDate.getText()));
+				heureD=(new Integer(wHeureD.getText()));
+				heureF=(new Integer(wHeureF.getText()));
+				Etat=(new Integer(wEtat.getText()));
+				IDcours=(new Integer(wIDcours.getText()));
+                                IDtype=(new Integer(wIDtype.getText()));
 				
 				try
 				{
