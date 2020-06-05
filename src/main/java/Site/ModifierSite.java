@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Groupe;
+package Site;
 
 /**
  *
@@ -28,54 +28,52 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class ModifierGroupe extends Frame implements ActionListener{
+public class ModifierSite extends Frame implements ActionListener{
    
-	JFrame modifGroupe=new JFrame();
+	JFrame modifSite=new JFrame();
 	JPanel panelText=new JPanel(new GridLayout(7,1));
 	JPanel panelButton=new JPanel();
-	JLabel ID=new JLabel("rentrez l'id du groupe que vous souhaitez modifier : :");
+	JLabel ID=new JLabel("rentrez l'id du site que vous souhaitez modifier : :");
 	JTextField wID=new JTextField(20);
-	JLabel IDgroupe=new JLabel("rentrez le nouvel ID du groupe :");
-	JTextField wIDgroupe =new JTextField(20);
-        JLabel Nom=new JLabel("rentrez le nouveau nom du groupe :");
+	JLabel IDsite=new JLabel("rentrez le nouvel ID du site :");
+	JTextField wIDsite =new JTextField(20);
+        JLabel Nom=new JLabel("rentrez le nouveau nom du site :");
 	JTextField wNom =new JTextField(20);
-        JLabel IDpromotion=new JLabel("rentrez la nouvelle promotion du groupe :");
-	JTextField wIDpromotion =new JTextField(20);
+  
 	
 	JButton valider=new JButton("Valider");
 	JButton annuler=new JButton("Annuler");
-	JLabel Titre=new JLabel("Modifier le groupe");
+	JLabel Titre=new JLabel("Modifier Le site");
 	
-	public ModifierGroupe()
+	public ModifierSite()
 	{
-		super("Modifier un nouveau groupe :");
-		modifGroupe.setLayout(new BorderLayout());
+		super("Modifier un nouveau site :");
+		modifSite.setLayout(new BorderLayout());
 		
 		JPanel p1=new JPanel(new GridLayout(1,2));
 		p1.add(ID);p1.add(wID);
                 JPanel p6=new JPanel(new GridLayout(1,2));
 		p6.add(Nom);p6.add(wNom);
 		JPanel p7=new JPanel(new GridLayout(1,2));
-		p7.add(IDgroupe);p7.add(wIDgroupe);
-                JPanel p8=new JPanel(new GridLayout(1,2));
-		p8.add(IDpromotion);p8.add(wIDpromotion);
+		p7.add(IDsite);p7.add(wIDsite);
+               
 		panelText.add(p1);panelText.add(p7);
-                panelText.add(p8);
+               
 		Titre.setForeground(Color.RED);Titre.setSize(50,50);
 		JPanel ptitre=new JPanel();
 		ptitre.add(Titre,BorderLayout.CENTER);
-		modifGroupe.add(ptitre,BorderLayout.NORTH);
-		modifGroupe.add(panelText,BorderLayout.CENTER);
+		modifSite.add(ptitre,BorderLayout.NORTH);
+		modifSite.add(panelText,BorderLayout.CENTER);
 		panelButton.add(valider);panelButton.add(annuler);
-		modifGroupe.add(panelButton,BorderLayout.SOUTH);
-		modifGroupe.setVisible(true);
-		modifGroupe.pack();
+		modifSite.add(panelButton,BorderLayout.SOUTH);
+		modifSite.setVisible(true);
+		modifSite.pack();
 		
 		valider.addActionListener(this);
 		annuler.addActionListener(this);
 		wID.addActionListener(this);
-		wIDpromotion.addActionListener(this);
-                wIDgroupe.addActionListener(this);
+		
+                wIDsite.addActionListener(this);
                 wNom.addActionListener(this);
 	}
              
@@ -85,12 +83,12 @@ public class ModifierGroupe extends Frame implements ActionListener{
 		
 		if(e.getSource()==valider)
 		{	
-                                int IDs,IDpromotion1,IDgroupe1, Nom1;
+                                int IDs,IDsite1, Nom1;
 				
 				IDs=(new Integer(wID.getText()));
 				
-				IDpromotion1=(new Integer(wIDpromotion.getText()));
-                                IDgroupe1=(new Integer(wIDgroupe.getText()));
+				
+                                IDsite1=(new Integer(wIDsite.getText()));
                                 Nom1=(new Integer(wNom.getText()));
 				
 				try
@@ -109,22 +107,23 @@ public class ModifierGroupe extends Frame implements ActionListener{
          
                         Connection cnx=DriverManager.getConnection(url,user,password);
 			Statement stm=cnx.createStatement ();
-                                        stm.executeUpdate("update groupe set Nom = '"+Nom1+"'  where ID ='"+IDs+"'");  
-					stm.executeUpdate("update groupe set IDpromotion = '"+IDpromotion1+"'where ID ='"+IDs+"'"); 
-                                        stm.executeUpdate("update groupe set IDgroupe = '"+IDgroupe1+"'  where ID ='"+IDs+"'");  
+                                        stm.executeUpdate("update site set Nom = '"+Nom1+"'  where ID ='"+IDs+"'");  
+					
+                                        stm.executeUpdate("update site set IDsite = '"+IDsite1+"'  where ID ='"+IDs+"'");  
 				stm.close();
 				cnx.close ();
 				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
-				modifGroupe.dispose();
+				modifSite.dispose();
 				}
 				catch(Exception ex)
 				{
-					JOptionPane.showMessageDialog(modifGroupe, "Erreur d'ajout verifier les champs", "Erreur",JOptionPane.ERROR_MESSAGE) ;
+					JOptionPane.showMessageDialog(modifSite, "Erreur d'ajout verifier les champs", "Erreur",JOptionPane.ERROR_MESSAGE) ;
 				}
 				
 		}
 		if(e.getSource()==annuler){
-			modifGroupe.dispose();
+			modifSite.dispose();
 		}
 		
 	}}
+
