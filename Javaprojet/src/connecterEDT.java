@@ -24,6 +24,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
+//import EDT.java;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,7 +40,7 @@ public class connecterEDT  extends JFrame implements ActionListener{
 	//private int ID;
 	private Container c;
 	private JPanel imagePanel;
-	private String image1="C:/Users/mathi/Documents/NetBeansProjects/Javaprojet/img/client.png";
+	private String image1="img/client.png";
 
 	
 	JLabel message=new JLabel("");
