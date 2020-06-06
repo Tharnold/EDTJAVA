@@ -96,9 +96,10 @@ public class supprimerSeance extends Frame implements ActionListener{
      
                         Connection cnx=DriverManager.getConnection(url,user,password);
 			Statement stm=cnx.createStatement ();
-			    System.out.println ("le driver n'a pu être chargé");
+			    
 					stm.executeUpdate("delete  from seance WHERE ID="+IDs+""); 
-                                        System.out.println ("le driver n'a pu être chargé 2");
+                                        
+                                      
 				stm.close();
 				cnx.close ();
 				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;

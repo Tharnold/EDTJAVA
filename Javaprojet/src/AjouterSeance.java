@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,7 +49,7 @@ public class AjouterSeance extends Frame implements ActionListener{
 	JTextField wIDtype =new JTextField(20);
 	JButton valider=new JButton("Valider");
 	JButton annuler=new JButton("Annuler");
-	JLabel Titre=new JLabel("modifier seance");
+	JLabel Titre=new JLabel("Ajouter seance");
 	
 	public AjouterSeance()
 	{

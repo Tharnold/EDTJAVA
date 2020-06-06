@@ -36,35 +36,29 @@ import javax.swing.JTextField;
  *
  * @author mathi
  */
-public class modifierSeance extends Frame implements ActionListener{
+public class ValideSeance extends Frame implements ActionListener{
    
 	JFrame modifSeance=new JFrame();
 	JPanel panelText=new JPanel(new GridLayout(7,1));
 	JPanel panelButton=new JPanel();
-	JLabel ID=new JLabel("rentrez l'id de la séance que vous souhaitez modifier : :");
+	JLabel ID=new JLabel("rentrez l'id de la séance que vous souhaitez valider :");
 	JTextField wID=new JTextField(20);
-	JLabel IDcours=new JLabel("rentrez le nouvel ID du cours :");
-	JTextField wIDcours =new JTextField(20);
-        JLabel IDtype=new JLabel("rentrez le nouvel ID du type :");
-	JTextField wIDtype =new JTextField(20);
+	
 	
 	JButton valider=new JButton("Valider");
 	JButton annuler=new JButton("Annuler");
-	JLabel Titre=new JLabel("Modifier seance");
+	JLabel Titre=new JLabel("VAlider une seance");
 	
-	public modifierSeance()
+	public ValideSeance()
 	{
-		super("Modifier une nouvelle seance :");
+		super("Valider une seance :");
 		modifSeance.setLayout(new BorderLayout());
 		
 		JPanel p1=new JPanel(new GridLayout(1,2));
 		p1.add(ID);p1.add(wID);
-		JPanel p7=new JPanel(new GridLayout(1,2));
-		p7.add(IDcours);p7.add(wIDcours);
-                JPanel p8=new JPanel(new GridLayout(1,2));
-		p8.add(IDtype);p8.add(wIDtype);
-		panelText.add(p1);panelText.add(p7);
-                panelText.add(p8);
+
+		
+		panelText.add(p1);
 		Titre.setForeground(Color.RED);Titre.setSize(50,50);
 		JPanel ptitre=new JPanel();
 		ptitre.add(Titre,BorderLayout.CENTER);
@@ -78,8 +72,7 @@ public class modifierSeance extends Frame implements ActionListener{
 		valider.addActionListener(this);
 		annuler.addActionListener(this);
 		wID.addActionListener(this);
-		wIDcours.addActionListener(this);
-                wIDtype.addActionListener(this);
+		
 	}
              
 	@Override
@@ -88,12 +81,12 @@ public class modifierSeance extends Frame implements ActionListener{
 		
 		if(e.getSource()==valider)
 		{	
-                                int IDs,IDcours1,IDtype1;
+                                int IDs;
+                                int valide = 1;
 				
 				IDs=(new Integer(wID.getText()));
 				
-				IDcours1=(new Integer(wIDcours.getText()));
-                                IDtype1=(new Integer(wIDtype.getText()));
+				
 				
 				try
 				{
@@ -112,8 +105,8 @@ public class modifierSeance extends Frame implements ActionListener{
                         Connection cnx=DriverManager.getConnection(url,user,password);
 			Statement stm=cnx.createStatement ();
 			
-					stm.executeUpdate("update seance set IDcours = '"+IDcours1+"'where ID ='"+IDs+"'"); 
-                                        stm.executeUpdate("update seance set IDtype = '"+IDtype1+"'  where ID ='"+IDs+"'");  
+                                stm.executeUpdate("update seance set etat = '"+valide+"'where ID ='"+IDs+"'"); 
+                                         
 				stm.close();
 				cnx.close ();
 				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
