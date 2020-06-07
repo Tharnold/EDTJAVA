@@ -57,7 +57,7 @@ static Connection cnx;
              
              Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver bien ouvert");
-            String url="jdbc:mysql://localhost:3305/edt";
+            String url="jdbc:mysql://localhost:3306/edt";
             String user="root";
             String password="";
          

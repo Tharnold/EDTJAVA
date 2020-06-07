@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.imageio.ImageIO;
+import javax.lang.model.SourceVersion;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -159,8 +160,6 @@ public class connecterEDT  extends JFrame implements ActionListener{
 		}
                 
 	}
-
-
 
 }
 
