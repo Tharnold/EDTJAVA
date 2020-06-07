@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,45 +22,38 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author mathi
+ * @author thoma
  */
 
 public class AjouterUtilisateur extends Frame implements ActionListener{
-   JFrame modifUtilisateur=new JFrame();
-   JFrame modifUtilisateur1=new JFrame();
-	JFrame modifUtilisateur2=new JFrame();
+   
+	JFrame A=new JFrame();
 	JPanel panelText=new JPanel(new GridLayout(7,1));
 	JPanel panelButton=new JPanel();
-        JPanel panelText1=new JPanel(new GridLayout(7,1));
-	JPanel panelButton1=new JPanel();
-        JPanel panelText2=new JPanel(new GridLayout(7,1));
-	JPanel panelButton3=new JPanel();
-	JLabel ID=new JLabel("ID : ");
-	JTextField wID=new JTextField(20);
-        JLabel Nom=new JLabel("Nom :");
+	JLabel IDUtilisateur=new JLabel("rentrez le ID de l'utilisateur :");
+	JTextField wIDUtilisateur =new JTextField(20);
+        JLabel Nom=new JLabel("rentrez le Nom :");
 	JTextField wNom =new JTextField(20);
-        JLabel Prenom=new JLabel("Prénom :");
+        JLabel Prenom=new JLabel("rentrez le Prénom :");
 	JTextField wPrenom =new JTextField(20);
-        JLabel Mail=new JLabel("Mail :");
+        JLabel Mail=new JLabel("rentrez le Mail :");
 	JTextField wMail =new JTextField(20);
-        JLabel Mdp=new JLabel("Password :");
+        JLabel Mdp=new JLabel("rentrez le mdp :");
 	JTextField wMdp =new JTextField(20);
-        JLabel Droits=new JLabel(" Droits :");
+        JLabel Droits=new JLabel("rentrez les Droits :");
 	JTextField wDroits =new JTextField(20);
 	
 	JButton valider=new JButton("Valider");
 	JButton annuler=new JButton("Annuler");
-       
-	JLabel Titre=new JLabel("Ajouter un utilisateur");
+	JLabel Titre=new JLabel("Ajouter l'utilisateur");
 	
         
 	public AjouterUtilisateur()
 	{
 		super("Ajouter un utilisateur :");
-		modifUtilisateur.setLayout(new BorderLayout());
+		A.setLayout(new BorderLayout());
 		
-		JPanel p1=new JPanel(new GridLayout(1,2));
-		p1.add(ID);p1.add(wID);
+		
 		JPanel p2=new JPanel(new GridLayout(1,2));
 		p2.add(Nom);p2.add(wNom);
                 JPanel p3=new JPanel(new GridLayout(1,2));
@@ -68,45 +65,50 @@ public class AjouterUtilisateur extends Frame implements ActionListener{
                 JPanel p7=new JPanel(new GridLayout(1,2));
 		p7.add(Droits);p7.add(wDroits);
                 JPanel p8=new JPanel(new GridLayout(1,2));
-		
-		panelText.add(p1);panelText.add(p2);
+		p8.add(IDUtilisateur);p8.add(wIDUtilisateur);
+		panelText.add(p2);
                 panelText.add(p3);panelText.add(p4);
                 panelText.add(p5);panelText.add(p7);
-               
+                panelText.add(p8);
 		Titre.setForeground(Color.RED);Titre.setSize(50,50);
 		JPanel ptitre=new JPanel();
 		ptitre.add(Titre,BorderLayout.CENTER);
-		modifUtilisateur.add(ptitre,BorderLayout.NORTH);
-		modifUtilisateur.add(panelText,BorderLayout.CENTER);
+		A.add(ptitre,BorderLayout.NORTH);
+		A.add(panelText,BorderLayout.CENTER);
 		panelButton.add(valider);panelButton.add(annuler);
-		modifUtilisateur.add(panelButton,BorderLayout.SOUTH);
-		modifUtilisateur.setVisible(true);
-		modifUtilisateur.pack();
+		A.add(panelButton,BorderLayout.SOUTH);
+		A.setVisible(true);
+		A.pack();
 		
 		valider.addActionListener(this);
 		annuler.addActionListener(this);
-              
-		wID.addActionListener(this);
+		
 		wNom.addActionListener(this);
+                wIDUtilisateur.addActionListener(this);
                 wPrenom.addActionListener(this);
                 wMail.addActionListener(this);
                 wDroits.addActionListener(this);
                 wMdp.addActionListener(this);
 	}
-      
-	
+             public static void main(String[]args)
+	{       
+		new AjouterUtilisateur();
+	}
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		
 		if(e.getSource()==valider)
 		{	
-                               
-				int IDs=(new Integer(wID.getText()));
-				String Nom1=wNom.getText().toString();
+                                int IDs,Droits1;
+				
+				IDs=(new Integer(wIDUtilisateur.getText()));
+				 String Nom1=wNom.getText().toString();
                                 String Prenom1=wPrenom.getText().toString();
-                                String Mail1=wMail.getText().toString();
-                                String Mdp1=wMdp.getText().toString();
-                                int Droits1=(new Integer(wDroits.getText()));
+                                 String Mail1=wMail.getText().toString();
+                                  String Mdp1=wMdp.getText().toString();
+                                   
+                                  Droits1=(new Integer(wDroits.getText()));
 				
 				try
 				{
@@ -114,7 +116,7 @@ public class AjouterUtilisateur extends Frame implements ActionListener{
 				}
 				catch(Exception ex)
 				{
-					System.out.println ("le driver n'a pu Ãªtre chargÃ©");
+					System.out.println ("le driver n'a pu être chargé");
 				}
 				try
 				{
@@ -124,32 +126,24 @@ public class AjouterUtilisateur extends Frame implements ActionListener{
          
                         Connection cnx=DriverManager.getConnection(url,user,password);
 			Statement stm=cnx.createStatement ();
-					stm.executeUpdate("insert into utilisateur(ID,nom,prenom,email,password,droit)values("+IDs+",'"+Nom1+"','"+Prenom1+"','"+Mail1+"','"+Mdp1+"',"+Droits1+")");  
-                                stm.close();
+			
+	stm.executeUpdate("insert into utilisateur(ID,nom,prenom,email,password,droit)values('"+IDs+"','"+Nom1+"','"+Prenom1+"','"+Mail1+"','"+Mdp1+"','"+Droits1+"')");     
+                                      
+                                        
+				stm.close();
 				cnx.close ();
-                                modifUtilisateur.dispose();
-                                if (Droits1 ==3){
-				
-                                new AjouterEnseignant();
-                                    
+				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
+				A.dispose();
 				}
-                                if (Droits1 == 4){
-                                    
-                                    new AjouterEtudiant();
-           
-                                }
-                                }
 				catch(Exception ex)
 				{
-					JOptionPane.showMessageDialog(modifUtilisateur, "Erreur d'ajout verifier les champs", "Erreur",JOptionPane.ERROR_MESSAGE) ;
+					JOptionPane.showMessageDialog(A, "Erreur d'ajout verifier les champs", "Erreur",JOptionPane.ERROR_MESSAGE) ;
 				}
 				
 		}
 		if(e.getSource()==annuler){
-			modifUtilisateur.dispose();
+			A.dispose();
 		}
 		
 	}
-        
 }
-       

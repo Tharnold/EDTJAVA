@@ -47,6 +47,14 @@ public class modifierSeance extends Frame implements ActionListener{
 	JTextField wIDcours =new JTextField(20);
         JLabel IDtype=new JLabel("rentrez le nouvel ID du type :");
 	JTextField wIDtype =new JTextField(20);
+         JLabel semaine=new JLabel("rentrez la nouvelle semaine :");
+	JTextField wSemaine =new JTextField(20);
+         JLabel date=new JLabel("rentrez la nouvelle date :");
+	JTextField wDate =new JTextField(20);
+         JLabel HD=new JLabel("rentrez l'heure de début :");
+	JTextField wHD =new JTextField(20);
+         JLabel HF=new JLabel("rentrez l'heure de fin :");
+	JTextField wHF =new JTextField(20);
 	
 	JButton valider=new JButton("Valider");
 	JButton annuler=new JButton("Annuler");
@@ -63,8 +71,18 @@ public class modifierSeance extends Frame implements ActionListener{
 		p7.add(IDcours);p7.add(wIDcours);
                 JPanel p8=new JPanel(new GridLayout(1,2));
 		p8.add(IDtype);p8.add(wIDtype);
+                 JPanel p9=new JPanel(new GridLayout(1,2));
+		p9.add(semaine);p9.add(wSemaine);
+                 JPanel p12=new JPanel(new GridLayout(1,2));
+		p12.add(date);p12.add(wDate);
+                 JPanel p10=new JPanel(new GridLayout(1,2));
+		p10.add(HD);p10.add(wHD);
+                 JPanel p11=new JPanel(new GridLayout(1,2));
+		p11.add(HF);p11.add(wHF);
 		panelText.add(p1);panelText.add(p7);
-                panelText.add(p8);
+                panelText.add(p8); panelText.add(p9);
+                 panelText.add(p11); panelText.add(p10);
+                 panelText.add(p12);
 		Titre.setForeground(Color.RED);Titre.setSize(50,50);
 		JPanel ptitre=new JPanel();
 		ptitre.add(Titre,BorderLayout.CENTER);
@@ -91,7 +109,9 @@ public class modifierSeance extends Frame implements ActionListener{
                                 int IDs,IDcours1,IDtype1;
 				
 				IDs=(new Integer(wID.getText()));
-				
+				String date=wDate.getText().toString();
+                               String heureD=wHD.getText().toString();
+                               String heureF=wHF.getText().toString();
 				IDcours1=(new Integer(wIDcours.getText()));
                                 IDtype1=(new Integer(wIDtype.getText()));
 				
@@ -113,7 +133,10 @@ public class modifierSeance extends Frame implements ActionListener{
 			Statement stm=cnx.createStatement ();
 			
 					stm.executeUpdate("update seance set IDcours = '"+IDcours1+"'where ID ='"+IDs+"'"); 
-                                        stm.executeUpdate("update seance set IDtype = '"+IDtype1+"'  where ID ='"+IDs+"'");  
+                                        stm.executeUpdate("update seance set IDtype = '"+IDtype1+"'  where ID ='"+IDs+"'"); 
+                                        stm.executeUpdate("update seance set date = '"+IDtype1+"'  where ID ='"+IDs+"'");  
+                                        stm.executeUpdate("update seance set heure_debut = '"+heureD+"'  where ID ='"+IDs+"'");  
+                                        stm.executeUpdate("update seance set heure_fin = '"+heureF+"'  where ID ='"+IDs+"'");  
 				stm.close();
 				cnx.close ();
 				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
@@ -129,5 +152,9 @@ public class modifierSeance extends Frame implements ActionListener{
 			modifSeance.dispose();
 		}
 		
+	}
+        public static void main(String[]args)
+	{       
+		new modifierSeance();
 	}
 }

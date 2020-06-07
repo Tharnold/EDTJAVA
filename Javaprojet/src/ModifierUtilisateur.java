@@ -1,3 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Frame;
@@ -16,7 +23,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author mathi
+ * @author thoma
  */
 
 public class ModifierUtilisateur extends Frame implements ActionListener{
@@ -24,11 +31,13 @@ public class ModifierUtilisateur extends Frame implements ActionListener{
 	JFrame modifUtilisateur=new JFrame();
 	JPanel panelText=new JPanel(new GridLayout(7,1));
 	JPanel panelButton=new JPanel();
-	JLabel ID=new JLabel("rentrez l'id de l'utilisateur que vous souhaitez modifier : ");
+	JLabel ID=new JLabel("rentrez l'id de l'utilisateur que vous souhaitez modifier : :");
 	JTextField wID=new JTextField(20);
+	JLabel IDUtilisateur=new JLabel("rentrez le nouvel ID de l'utilisateur :");
+	JTextField wIDUtilisateur =new JTextField(20);
         JLabel Nom=new JLabel("rentrez le nouveau Nom :");
 	JTextField wNom =new JTextField(20);
-        JLabel Prenom=new JLabel("rentrez le nouveau PrÃ©nom :");
+        JLabel Prenom=new JLabel("rentrez le nouveau Prénom :");
 	JTextField wPrenom =new JTextField(20);
         JLabel Mail=new JLabel("rentrez le nouveau Mail :");
 	JTextField wMail =new JTextField(20);
@@ -60,11 +69,11 @@ public class ModifierUtilisateur extends Frame implements ActionListener{
                 JPanel p7=new JPanel(new GridLayout(1,2));
 		p7.add(Droits);p7.add(wDroits);
                 JPanel p8=new JPanel(new GridLayout(1,2));
-		
+		p8.add(IDUtilisateur);p8.add(wIDUtilisateur);
 		panelText.add(p1);panelText.add(p2);
                 panelText.add(p3);panelText.add(p4);
                 panelText.add(p5);panelText.add(p7);
-               
+                panelText.add(p8);
 		Titre.setForeground(Color.RED);Titre.setSize(50,50);
 		JPanel ptitre=new JPanel();
 		ptitre.add(Titre,BorderLayout.CENTER);
@@ -79,25 +88,31 @@ public class ModifierUtilisateur extends Frame implements ActionListener{
 		annuler.addActionListener(this);
 		wID.addActionListener(this);
 		wNom.addActionListener(this);
+                wIDUtilisateur.addActionListener(this);
                 wPrenom.addActionListener(this);
                 wMail.addActionListener(this);
                 wDroits.addActionListener(this);
                 wMdp.addActionListener(this);
 	}
-        
+             public static void main(String[]args)
+	{       
+		new ModifierUtilisateur();
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		
 		if(e.getSource()==valider)
 		{	
-                               
-				int IDs=(new Integer(wID.getText()));
-				String Nom1=wNom.getText().toString();
+                                int IDs, Droits1;
+				
+				IDs=(new Integer(wID.getText()));
+				 String Nom1=wNom.getText().toString();
                                 String Prenom1=wPrenom.getText().toString();
-                                String Mail1=wMail.getText().toString();
-                                String Mdp1=wMdp.getText().toString();
-                                int Droits1=(new Integer(wDroits.getText()));
+                                 String Mail1=wMail.getText().toString();
+                                  String Mdp1=wMdp.getText().toString();
+                                   
+                                Droits1=(new Integer(wDroits.getText()));
 				
 				try
 				{
@@ -105,7 +120,7 @@ public class ModifierUtilisateur extends Frame implements ActionListener{
 				}
 				catch(Exception ex)
 				{
-					System.out.println ("le driver n'a pu Ãªtre chargÃ©");
+					System.out.println ("le driver n'a pu être chargé");
 				}
 				try
 				{
@@ -115,17 +130,16 @@ public class ModifierUtilisateur extends Frame implements ActionListener{
          
                         Connection cnx=DriverManager.getConnection(url,user,password);
 			Statement stm=cnx.createStatement ();
-                                        
-                        
-					stm.executeUpdate("update utilisateur set Nom = '"+Nom1+"'where ID ='"+IDs+"'"); 
-                                        stm.executeUpdate("update utilisateur set Prenom = '"+Prenom1+"'where ID ='"+IDs+"'");
-                                        stm.executeUpdate("update utilisateur set Mail = '"+Mail1+"'where ID ='"+IDs+"'");
-                                        stm.executeUpdate("update utilisateur set Mdp = '"+Mdp1+"'where ID ='"+IDs+"'");
-                                        
+			
+					stm.executeUpdate("update utilisateur set nom = '"+Nom1+"'where ID ='"+IDs+"'"); 
+                                        stm.executeUpdate("update utilisateur set prenom = '"+Prenom1+"'where ID ='"+IDs+"'");
+                                        stm.executeUpdate("update utilisateur set email = '"+Mail1+"'where ID ='"+IDs+"'");
+                                        stm.executeUpdate("update utilisateur set password = '"+Mdp1+"'where ID ='"+IDs+"'");
+                                        stm.executeUpdate("update utilisateur set droit = '"+Droits1+"'where ID ='"+IDs+"'");
                                         
 				stm.close();
 				cnx.close ();
-				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajoutÃ© avec succÃ©", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
+				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
 				modifUtilisateur.dispose();
 				}
 				catch(Exception ex)

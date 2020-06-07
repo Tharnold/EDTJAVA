@@ -55,25 +55,18 @@ public class AjouterSeance extends Frame implements ActionListener{
 	{
 		super("Ajouter une nouvelle seance :");
 		AjouteSeance.setLayout(new BorderLayout());
-		//panelText.add(Nom);panelText.add(ChNom);
 		JPanel p1=new JPanel(new GridLayout(1,2));
 		p1.add(ID);p1.add(wID);
-		//panelText.add(Prenom);panelText.add(ChPrenom);
 		JPanel p2=new JPanel(new GridLayout(1,2));
 		p2.add(semaine);p2.add(wSemaine);
-		//panelText.add(alias);panelText.add(Chalias);
 		JPanel p3=new JPanel(new GridLayout(1,2));
 		p3.add(date);p3.add(wDate);
-		//panelText.add(CIN);panelText.add(ChCIN);
 		JPanel p4=new JPanel(new GridLayout(1,2));
 		p4.add(heureD);p4.add(wHeureD);
-		//panelText.add(affectation);panelText.add(ChAffectation);
 		JPanel p5=new JPanel(new GridLayout(1,2));
 		p5.add(heureF);p5.add(wHeureF);
-		//panelText.add(Grade);panelText.add(ChGrade);
 		JPanel p6=new JPanel(new GridLayout(1,2));
 		p6.add(etat);p6.add(wEtat);
-		//panelText.add(Charge);panelText.add(Chcharge);
 		JPanel p7=new JPanel(new GridLayout(1,2));
 		p7.add(IDcours);p7.add(wIDcours);
                 JPanel p8=new JPanel(new GridLayout(1,2));
@@ -111,13 +104,13 @@ public class AjouterSeance extends Frame implements ActionListener{
 		
 		if(e.getSource()==valider)
 		{	
-                                int ID, semaine, date,heureD,heureF,Etat,IDcours,IDtype;
+                                int ID, semaine,Etat,IDcours,IDtype;
 				
 				ID=(new Integer(wID.getText()));
 				semaine=(new Integer(wSemaine.getText()));
-                                date=(new Integer(wDate.getText()));
-				heureD=(new Integer(wHeureD.getText()));
-				heureF=(new Integer(wHeureF.getText()));
+                               String date=wDate.getText().toString();
+                               String heureD=wHeureD.getText().toString();
+                               String heureF=wHeureF.getText().toString();
 				Etat=(new Integer(wEtat.getText()));
 				IDcours=(new Integer(wIDcours.getText()));
                                 IDtype=(new Integer(wIDtype.getText()));
@@ -156,4 +149,9 @@ public class AjouterSeance extends Frame implements ActionListener{
 		}
 		
 	}
+         public static void main(String[]args)
+	{       
+		new AjouterSeance();
+	}
+       
 }

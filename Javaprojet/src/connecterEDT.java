@@ -16,7 +16,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.imageio.ImageIO;
-import javax.lang.model.SourceVersion;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,8 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-
-//import EDT.java;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,7 +38,7 @@ public class connecterEDT  extends JFrame implements ActionListener{
 	//private int ID;
 	private Container c;
 	private JPanel imagePanel;
-	private String image1="img/client.png";
+	private String image1="C:/Users/mathi/Documents/NetBeansProjects/Javaprojet/img/client.png";
 
 	
 	JLabel message=new JLabel("");
@@ -57,7 +54,7 @@ public class connecterEDT  extends JFrame implements ActionListener{
 	JPanel p2=new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	JPanel p3=new JPanel(new GridLayout(3,1));
 	JPanel p4=new JPanel(new FlowLayout(FlowLayout.LEFT));
-	public connecterEDT()
+	public connecterEDT()  
 	{	
 		this.setLocation(350,300);
 		p1.add(l);p1.add(mdp);mdp.setBackground(Color.WHITE);
@@ -137,10 +134,7 @@ public class connecterEDT  extends JFrame implements ActionListener{
 				}
 				if((logverif != null)&&(mdpverif != null))
 				{
-					//new MenuPrincipal();
-                                   //  System.out.println(""+id);
-                                    System.out.println("okkkkk");
-					//this.dispose();
+					new EDT();
 				}
 				else
 				{
@@ -160,6 +154,8 @@ public class connecterEDT  extends JFrame implements ActionListener{
 		}
                 
 	}
+
+
 
 }
 
