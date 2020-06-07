@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package controleur;
+import modele.*;
+import vue.*;
 
-/**
- *
- * @author mathi
- */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Frame;
@@ -17,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,56 +30,57 @@ import javax.swing.JTextField;
  *
  * @author mathi
  */
-public class annuleSeance extends Frame implements ActionListener{
+public class supprimerSeance extends Frame implements ActionListener{
    
-	JFrame modifSeance=new JFrame();
+	JFrame supprSeance=new JFrame();
 	JPanel panelText=new JPanel(new GridLayout(7,1));
 	JPanel panelButton=new JPanel();
-	JLabel ID=new JLabel("rentrez l'id de la séance que vous souhaitez annuler :");
+	JLabel ID=new JLabel("veuillez rentre l'ID de la séance à supprimer:");
 	JTextField wID=new JTextField(20);
+	Icon vlid=new ImageIcon("C:/Users/MOSLEM/Desktop/EmploiDetemps/bin/image/tick.png");
+	Icon annl=new ImageIcon("C:/Users/MOSLEM/Desktop/EmploiDetemps/bin/image/publish_r.png");
+	JButton valider=new JButton("Valider",vlid);
+	JButton annuler=new JButton("Annuler",annl);
+	JLabel Titre=new JLabel("Supprimer seance");
 	
-	
-	JButton valider=new JButton("Valider");
-	JButton annuler=new JButton("Annuler");
-	JLabel Titre=new JLabel("Anuler une seance");
-	
-	public annuleSeance()
+	public supprimerSeance()
 	{
-		super("Valider une seance :");
-		modifSeance.setLayout(new BorderLayout());
-		
+		super("Ajouter une nouvelle seance :");
+                this.setLocation(350,300);
+		supprSeance.setLayout(new BorderLayout());
+		//panelText.add(Nom);panelText.add(ChNom);
 		JPanel p1=new JPanel(new GridLayout(1,2));
 		p1.add(ID);p1.add(wID);
-
+		//panelText.add(Prenom);panelText.add(ChPrenom);
 		
-		panelText.add(p1);
+		
+		
 		Titre.setForeground(Color.RED);Titre.setSize(50,50);
 		JPanel ptitre=new JPanel();
 		ptitre.add(Titre,BorderLayout.CENTER);
-		modifSeance.add(ptitre,BorderLayout.NORTH);
-		modifSeance.add(panelText,BorderLayout.CENTER);
+                panelText.add(p1);
+		supprSeance.add(ptitre,BorderLayout.NORTH);
+		supprSeance.add(panelText,BorderLayout.CENTER);
 		panelButton.add(valider);panelButton.add(annuler);
-		modifSeance.add(panelButton,BorderLayout.SOUTH);
-		modifSeance.setVisible(true);
-		modifSeance.pack();
+		supprSeance.add(panelButton,BorderLayout.SOUTH);
+		supprSeance.setVisible(true);
+		supprSeance.pack();
 		
 		valider.addActionListener(this);
 		annuler.addActionListener(this);
 		wID.addActionListener(this);
 		
 	}
-      
-	@Override
+	
+       
 	public void actionPerformed(ActionEvent e) {
 		
 		
 		if(e.getSource()==valider)
 		{	
                                 int IDs;
-                                int valide = 3;
 				
 				IDs=(new Integer(wID.getText()));
-				
 				
 				
 				try
@@ -96,30 +93,30 @@ public class annuleSeance extends Frame implements ActionListener{
 				}
 				try
 				{
-					String url ="jdbc:mysql://localhost:3305/edt";
+                                String url ="jdbc:mysql://localhost:3305/edt";
 				String user="root";
                                 String password="";
-         
+     
                         Connection cnx=DriverManager.getConnection(url,user,password);
 			Statement stm=cnx.createStatement ();
-			
-                                stm.executeUpdate("update seance set etat = '"+valide+"'where ID ='"+IDs+"'"); 
-                                         
+			    
+					stm.executeUpdate("delete  from seance WHERE ID="+IDs+""); 
+                                        
+                                      
 				stm.close();
 				cnx.close ();
 				//JOptionPane.showMessageDialog(AjouteSeance, "seance ajouté avec succé", "Ajouter",JOptionPane.INFORMATION_MESSAGE) ;
-				modifSeance.dispose();
+				supprSeance.dispose();
 				}
 				catch(Exception ex)
 				{
-					JOptionPane.showMessageDialog(modifSeance, "Erreur d'ajout verifier les champs", "Erreur",JOptionPane.ERROR_MESSAGE) ;
+					JOptionPane.showMessageDialog(supprSeance, "Erreur d'ajout verifier les champs", "Erreur",JOptionPane.ERROR_MESSAGE) ;
 				}
 				
 		}
 		if(e.getSource()==annuler){
-			modifSeance.dispose();
+			supprSeance.dispose();
 		}
 		
 	}
 }
-

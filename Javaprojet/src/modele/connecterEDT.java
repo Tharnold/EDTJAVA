@@ -1,4 +1,9 @@
+package modele;
+import controleur.*;
+import vue.*;
 
+
+import vue.EDT;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;

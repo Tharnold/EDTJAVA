@@ -1,3 +1,6 @@
+package controleur;
+import modele.*;
+import vue.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
